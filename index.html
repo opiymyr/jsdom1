@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Таблица</title>
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    height: 100vh;
+    margin: 0;
+  }
+
+  table {
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+
+  td {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    border: 1px solid black;
+    font-size: 18px;
+  }
+
+  .orange {
+    background-color: orange;
+  }
+
+  button {
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<button onclick="foo()">Добавить число</button>
+<table id="myTable"></table>
+
+<script>
+  function foo() {
+  let table = document.getElementById("myTable");
+  let rows = table.getElementsByTagName("tr");
+  let lastRow = rows[rows.length - 1];
+  if (lastRow.children.length >= 6) {
+    lastRow = document.createElement("tr");
+    table.appendChild(lastRow);
+  }
+
+  let td = document.createElement("td");
+  let value = Math.floor(Math.random() * 100);
+
+  td.textContent = value;
+
+  if (value >= 50) {
+    td.classList.add("orange");
+  }
+
+  lastRow.appendChild(td);
+}
+  let arr = [];
+  for (let i = 0; i < 30; i++) {
+    arr.push(Math.floor(Math.random() * 100));
+  }
+  let table = document.getElementById("myTable");
+  let index = 0;
+
+  for (let i = 0; i < 5; i++) {
+    let tr = document.createElement("tr");
+
+    for (let j = 0; j < 6; j++) {
+      let td = document.createElement("td");
+      let value = arr[index++];
+
+      td.textContent = value;
+
+      if (value >= 50) {
+        td.classList.add("orange");
+      }
+
+      tr.appendChild(td);
+    }
+
+    table.appendChild(tr);
+  }
+</script>
+
+</body>
+</html>
